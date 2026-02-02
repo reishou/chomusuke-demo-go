@@ -11,12 +11,13 @@ import (
 
 	entsql "entgo.io/ent/dialect/sql"
 	"github.com/labstack/echo/v4"
-	_ "github.com/mattn/go-sqlite3"
+	//_ "github.com/mattn/go-sqlite3"
 	"github.com/mikestefanello/backlite"
 	"github.com/mikestefanello/pagoda/config"
 	"github.com/mikestefanello/pagoda/ent"
 	"github.com/mikestefanello/pagoda/pkg/log"
 	"github.com/spf13/afero"
+	_ "github.com/sqlite3ent/sqlite3"
 
 	// Required by ent.
 	_ "github.com/mikestefanello/pagoda/ent/runtime"
@@ -224,7 +225,7 @@ func (c *Container) initTasks() {
 
 // openDB opens a database connection.
 func openDB(driver, connection string) (*sql.DB, error) {
-	if driver == "sqlite3" {
+	if driver == "sqlite" {
 		// Helper to automatically create the directories that the specified sqlite file
 		// should reside in, if one.
 		d := strings.Split(connection, "/")
